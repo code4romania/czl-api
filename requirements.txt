@@ -1,0 +1,5 @@
+# TODO: switch to Django 1.11 soon
+Django>=1.10.6,<1.11
+djangorestframework>=3.4.0,<3.5
+django-enumfields>=0.8.2,<0.9
+drf-enum-field>=0.9.1,<0.10

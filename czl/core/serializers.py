@@ -1,11 +1,11 @@
-from rest_framework import serializers
+from rest_framework import serializers, fields
 from drf_enum_field.serializers import EnumFieldSerializerMixin
-from .models import Organization, Publication, Document
+from .models import Institution, Publication, Document
 
 
-class OrganizationSerializer(serializers.HyperlinkedModelSerializer):
+class InstitutionSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = Organization
+        model = Institution
 
 
 class PublicationSerializer(EnumFieldSerializerMixin,

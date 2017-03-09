@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import Organization, Publication, Document
+from .models import Institution, Publication, Document
 
 
-admin.site.register(Organization)
+admin.site.register(Institution)
 admin.site.register(Publication)
 admin.site.register(Document)

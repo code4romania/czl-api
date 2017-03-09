@@ -1,13 +1,13 @@
 from rest_framework import viewsets
-from .models import Organization, Publication, Document
+from .models import Institution, Publication, Document
 from .serializers import (
-    OrganizationSerializer, PublicationSerializer, DocumentSerializer,
+    InstitutionSerializer, PublicationSerializer, DocumentSerializer,
 )
 
 
-class OrganizationViewSet(viewsets.ModelViewSet):
-    queryset = Organization.objects.all()
-    serializer_class = OrganizationSerializer
+class InstitutionViewSet(viewsets.ModelViewSet):
+    queryset = Institution.objects.all()
+    serializer_class = InstitutionSerializer
 
 
 class PublicationViewSet(viewsets.ModelViewSet):

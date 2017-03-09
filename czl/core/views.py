@@ -5,20 +5,23 @@ from .serializers import (
 )
 
 
-# everything is read-only
+# institutions are read-only
 class InstitutionViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Institution.objects.all()
     serializer_class = InstitutionSerializer
 
 
-# except for publications, which are read/create-only
-class PublicationViewSet(mixins.CreateModelMixin,
-                         viewsets.ReadOnlyModelViewSet):
+# while the rest is read/create-only, and requires auth
+class _WritableViewSet(mixins.CreateModelMixin,
+                       viewsets.ReadOnlyModelViewSet):
     permission_classes = (permissions.IsAuthenticatedOrReadOnly, )
+
+
+class PublicationViewSet(_WritableViewSet):
     queryset = Publication.objects.all()
     serializer_class = PublicationSerializer
 
 
-class DocumentViewSet(viewsets.ReadOnlyModelViewSet):
+class DocumentViewSet(_WritableViewSet):
     queryset = Document.objects.all()
     serializer_class = DocumentSerializer

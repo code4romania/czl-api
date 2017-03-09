@@ -8,12 +8,28 @@ class InstitutionSerializer(serializers.HyperlinkedModelSerializer):
         model = Institution
 
 
-class PublicationSerializer(EnumFieldSerializerMixin,
-                            serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Publication
-
-
 class DocumentSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Document
+
+
+class NestedDocumentSerializer(DocumentSerializer):
+    class Meta(DocumentSerializer.Meta):
+        exclude = ('publication', 'id')
+
+
+class PublicationSerializer(EnumFieldSerializerMixin,
+                            serializers.HyperlinkedModelSerializer):
+    documents = NestedDocumentSerializer(many=True, required=False)
+
+    class Meta:
+        model = Publication
+
+    def create(self, validated_data):
+        docs_data = validated_data.pop('documents', [])
+        publication = super().create(validated_data)
+
+        for doc_data in docs_data:
+            Document.objects.create(publication=publication, **doc_data)
+
+        return publication

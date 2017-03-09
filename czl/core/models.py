@@ -43,6 +43,6 @@ class Publication(models.Model):
 
 
 class Document(models.Model):
-    publication = models.ForeignKey(Publication)
+    publication = models.ForeignKey(Publication, related_name="documents")
     type = models.CharField(max_length=128, blank=True)
     url = models.URLField()

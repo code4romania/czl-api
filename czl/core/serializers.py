@@ -1,3 +1,4 @@
+from django.db import IntegrityError
 from rest_framework import serializers, fields
 from drf_enum_field.serializers import EnumFieldSerializerMixin
 from .models import Institution, Publication, Document
@@ -36,7 +37,24 @@ class PublicationSerializer(EnumFieldSerializerMixin,
 
         data = validated_data.copy()
         data['submitted_by'] = user
-        publication = super().create(data)
+        try:
+            publication = super().create(data)
+        except IntegrityError as e:
+            # err... this is silly but oh well
+            err = str(e)
+            msg = "Integrity Error"
+
+            # WARNING: this is based on a very specific error format
+            # and is quite likely to fail on upgrade
+            if err.startswith("duplicate key value violates unique constraint"):
+                detail = err.splitlines()[1]
+                _intro = 'DETAIL:'
+                if detail.startswith(_intro):
+                    detail = detail[len(_intro):].strip()
+
+                msg += ": " + detail
+
+            raise serializers.ValidationError(msg)
 
         for doc_data in docs_data:
             doc_data['submitted_by'] = user

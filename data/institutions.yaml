@@ -1,0 +1,111 @@
+- id: justitie
+  name: Ministerul Justiţiei
+  url: http://www.just.ro/transparenta-decizionala/acte-normative/proiecte-in-dezbatere/
+
+- id: sanatate
+  name: Ministerul Sănătăţii
+  url: http://www.ms.ro/acte-normative-in-transparenta/
+
+- id: comunicatii
+  name: Ministerul Comunicaţiilor şi pentru Societatea Informaţională
+  url: https://www.comunicatii.gov.ro/?page_id=3517
+
+- id: apepaduri
+  name: Ministerul Apelor și Pădurilor
+  url: http://apepaduri.gov.ro/proiecte-de-acte-normative/
+
+- id: externe
+  name: Ministerul Afacerilor Externe
+  url: http://www.mae.ro/node/2011
+
+- id: interne
+  name: Ministerul Afacerilor Interne
+  url: http://www.mai.gov.ro/index05_1.html
+
+- id: agricultura
+  name: Ministerul Agriculturii Şi Dezvoltării Rurale
+  url: http://www.madr.gov.ro/transparenta-decizionala/proiecte-de-acte-normative.html
+
+- id: aparare
+  name: Ministerul Apărării Naţionale
+  url: http://dlaj.mapn.ro
+
+- id: cultura
+  name: Ministerul Culturii
+  url: http://www.cultura.ro/proiecte-acte-normative
+
+- id: dezvoltare
+  name: Ministerul Dezvoltării Regionale, Administrației Publice și Fondurilor Europene
+  url: http://www.mdrap.gov.ro/transparenta/consultari-publice
+
+- id: afaceri
+  name: Ministerul pentru Mediul de Afaceri, Comerț și Antreprenoriat
+  url: http://www.antreprenoriat.gov.ro/categorie/transparenta-decizionala/proiecte-in-dezbatere-publica/
+
+- id: economie
+  name: Ministerul Economiei, Comerțului și Relațiilor cu Mediul de Afaceri
+  url: http://economie.gov.ro/transparenta-decizionala/proiecte-in-dezbatere-publica
+
+- id: energie
+  name: Ministerul Energiei
+  url: http://energie.gov.ro/transparenta-si-integritate/transparenta-decizionala-2/
+
+- id: educatie
+  name: Ministerul Educaţiei Naţionale și Cercetării Științifice
+  url: http://www.edu.ro/proiecte-acte-normative-0
+
+- id: finantepub
+  name: Ministerul Finanţelor Publice
+  url: http://www.mfinante.gov.ro/transparent.html?method=transparenta&pagina=acasa&locale=ro
+
+- id: mediu
+  name: Ministerul Mediului
+  url: http://www.mmediu.gov.ro/categorie/proiecte-de-acte-normative/41
+
+- id: munca
+  name: Ministerul Muncii, Familiei, Protecţiei Sociale și Persoanelor Vârstnice
+  url: http://www.mmuncii.ro/j33/index.php/ro/transparenta/proiecte-in-dezbatere
+
+- id: tineret
+  name: Ministerul Tineretului și Sportului
+  url: http://mts.ro/proiecte-legislative-in-dezbatere-publica/
+
+- id: transport
+  name: Ministerul Transporturilor
+  url: http://mt.gov.ro/web14/transparenta-decizionala/consultare-publica/acte-normative-in-avizare
+
+- id: turism
+  name: Ministerul Turismului
+  url: http://turism.gov.ro/transparenta-decizionala-2/
+
+- id: dialog
+  name: Ministerul Consultărilor Publice și Dialogului Social
+  url: http://dialogsocial.gov.ro/categorie/proiecte-de-acte-normative/
+
+- id: relparlament
+  name: Ministerul pentru Relaţia cu Parlamentul
+  url: http://mrp.gov.ro/web/category/consultare-publica/?future=false
+
+- id: pretutindeni
+  name: Ministerul pentru Românii de Pretutindeni
+  url: http://www.dprp.gov.ro/documente-in-consultare-publica/
+
+- id: cercetare
+  name: Ministerul Cercetării și Inovării
+  url: http://www.research.gov.ro/ro/articol/1029/despre-ancs-legislatie-proiecte-de-acte-normative
+
+- id: sgg
+  name: Secretariatul General al Guvernului
+  url: http://www.sgg.ro/legislativ/
+
+- id: cdep
+  name: Camera Deputatilor
+  url: www.cdep.ro/pls/proiecte/upl_pck.home
+
+- id: senat
+  name: Senatul
+  url: https://www.senat.ro/LegiProiect.aspx
+
+- id: presedinte
+  name: Presedintia
+  url: http://www.presidency.ro/ro/presedinte/decrete-si-acte-oficiale

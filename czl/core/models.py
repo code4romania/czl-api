@@ -1,7 +1,8 @@
+from django.conf import settings
 from django.db import models
 from django.contrib.postgres import fields as pgfields
 from enumfields import EnumField, Enum
-from .validators import AllowedKeysValidator
+#from .validators import AllowedKeysValidator
 
 
 class PUBLICATION_TYPES(Enum):
@@ -48,6 +49,7 @@ class Publication(models.Model):
     contact = pgfields.HStoreField(default=dict) # (validators=[
     #    AllowedKeysValidator('tel', 'email', 'addr'),
     # ])
+    submitted_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True)
 
     def __str__(self):
         return "%s - %s" % (self.date, self.title)
@@ -64,3 +66,4 @@ class Document(models.Model):
     publication = models.ForeignKey(Publication, related_name="documents")
     type = models.CharField(max_length=128, blank=True)
     url = models.URLField()
+    submitted_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True)

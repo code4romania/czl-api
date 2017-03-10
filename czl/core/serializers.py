@@ -11,11 +11,12 @@ class InstitutionSerializer(serializers.ModelSerializer):
 class DocumentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Document
+        exclude = ('submitted_by', )
 
 
 class NestedDocumentSerializer(DocumentSerializer):
     class Meta(DocumentSerializer.Meta):
-        exclude = ('publication', 'id')
+        exclude = ('publication', 'id', 'submitted_by')
 
 
 class PublicationSerializer(EnumFieldSerializerMixin,
@@ -25,12 +26,20 @@ class PublicationSerializer(EnumFieldSerializerMixin,
     class Meta:
         model = Publication
         extra_kwargs = {'id': {'read_only': True}}
+        exclude = ('submitted_by', )
 
     def create(self, validated_data):
         docs_data = validated_data.pop('documents', [])
-        publication = super().create(validated_data)
+        user = self.context['request'].user
+        if user.is_anonymous:
+            user = None
+
+        data = validated_data.copy()
+        data['submitted_by'] = user
+        publication = super().create(data)
 
         for doc_data in docs_data:
+            doc_data['submitted_by'] = user
             Document.objects.create(publication=publication, **doc_data)
 
         return publication

@@ -48,7 +48,7 @@ class Publication(models.Model):
     type = EnumField(PUBLICATION_TYPES, max_length=7)
     issuer = models.ForeignKey(Institution)
     date = models.DateField(db_index=True)
-    description = models.TextField()
+    description = models.TextField(blank=True)
     feedback_days = models.PositiveSmallIntegerField(null=True)
     contact = pgfields.HStoreField(default=dict) # (validators=[
     #    AllowedKeysValidator('tel', 'email', 'addr'),

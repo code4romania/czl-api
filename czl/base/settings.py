@@ -32,6 +32,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.postgres',
+    'webshell',
     'rest_framework',
     'rest_framework.authtoken',
     'czl.core',

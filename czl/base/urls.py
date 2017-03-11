@@ -19,5 +19,6 @@ import czl.core.urls
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^admin/webshell/', include('webshell.urls')),
     url(r'^api/', include(czl.core.urls)),
 ]

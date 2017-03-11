@@ -11,6 +11,7 @@ class PUBLICATION_TYPES(Enum):
     OG = "og"
     OUG = "oug"
     OM = "om"
+    OTHER = "other"
 
     class Labels:
         LEGE = "Lege"
@@ -18,6 +19,7 @@ class PUBLICATION_TYPES(Enum):
         OG = "Ordonanță de guvern"
         OUG = "Ordonanță de urgență"
         OM = "Ordin de ministru"
+        OTHER = "Altceva..."
 
 
 class Institution(models.Model):

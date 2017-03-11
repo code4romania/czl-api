@@ -2,6 +2,7 @@ from django.db import IntegrityError
 from rest_framework import serializers, fields
 from drf_enum_field.serializers import EnumFieldSerializerMixin
 from .models import Institution, Publication, Document
+from .fields import CleansedURLField
 
 
 class InstitutionSerializer(serializers.ModelSerializer):
@@ -10,6 +11,8 @@ class InstitutionSerializer(serializers.ModelSerializer):
 
 
 class DocumentSerializer(serializers.ModelSerializer):
+    url = CleansedURLField()
+
     class Meta:
         model = Document
         exclude = ('submitted_by', )
@@ -23,6 +26,7 @@ class NestedDocumentSerializer(DocumentSerializer):
 class PublicationSerializer(EnumFieldSerializerMixin,
                             serializers.ModelSerializer):
     documents = NestedDocumentSerializer(many=True, required=False)
+    url = CleansedURLField()
 
     class Meta:
         model = Publication

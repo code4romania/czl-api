@@ -6,16 +6,18 @@ from enumfields import EnumField, Enum
 
 
 class PUBLICATION_TYPES(Enum):
-    PROIECT = "proiect"
+    LEGE = "lege"
     HG = "hg"
     OG = "og"
     OUG = "oug"
+    OM = "om"
 
     class Labels:
-        PROIECT = "Proiect de lege"
+        LEGE = "Lege"
         HG = "Hotărâre de guvern"
         OG = "Ordonanță de guvern"
         OUG = "Ordonanță de urgență"
+        OM = "Ordin de ministru"
 
 
 class Institution(models.Model):

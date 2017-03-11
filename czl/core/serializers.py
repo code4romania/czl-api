@@ -26,7 +26,6 @@ class NestedDocumentSerializer(DocumentSerializer):
 class PublicationSerializer(EnumFieldSerializerMixin,
                             serializers.ModelSerializer):
     documents = NestedDocumentSerializer(many=True, required=False)
-    url = CleansedURLField()
 
     class Meta:
         model = Publication

@@ -41,7 +41,7 @@ class Publication(models.Model):
 
     id = models.CharField(max_length=__id_length, primary_key=True)
     identifier = models.CharField(max_length=__identifier_length)
-    title = models.CharField(max_length=512)
+    title = models.CharField(max_length=2048)
     # TODO: switch this to an enum on the db side as well
     type = EnumField(PUBLICATION_TYPES, max_length=7)
     issuer = models.ForeignKey(Institution)

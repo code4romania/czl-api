@@ -46,7 +46,7 @@ class Publication(models.Model):
     title = models.CharField(max_length=2048)
     # TODO: switch this to an enum on the db side as well
     type = EnumField(PUBLICATION_TYPES, max_length=7)
-    issuer = models.ForeignKey(Institution)
+    institution = models.ForeignKey(Institution)
     date = models.DateField(db_index=True)
     description = models.TextField(blank=True)
     feedback_days = models.PositiveSmallIntegerField(null=True)

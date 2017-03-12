@@ -60,7 +60,7 @@ class Publication(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.id:
-            self.id = self.ID_FORMAT.format(institution=self.issuer.id,
+            self.id = self.ID_FORMAT.format(institution=self.institution.id,
                                             date=self.date.isoformat(),
                                             identifier=self.identifier)
         super().save(*args, **kwargs)

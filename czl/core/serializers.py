@@ -37,7 +37,7 @@ class PublicationSerializer(serializers.ModelSerializer):
             user = None
 
         data = validated_data.copy()
-        data['submitted_by'] = user
+        data['_created_by'] = user
         try:
             publication = super().create(data)
         except IntegrityError as e:
@@ -58,7 +58,7 @@ class PublicationSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(msg)
 
         for doc_data in docs_data:
-            doc_data['submitted_by'] = user
+            doc_data['_created_by'] = user
             Document.objects.create(publication=publication, **doc_data)
 
         return publication

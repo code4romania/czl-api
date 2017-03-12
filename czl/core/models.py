@@ -70,4 +70,4 @@ class Publication(_WritableModel):
 class Document(_WritableModel):
     publication = models.ForeignKey(Publication, related_name="documents")
     type = models.CharField(max_length=128, blank=True)
-    url = models.URLField()
+    url = models.URLField(max_length=2048)

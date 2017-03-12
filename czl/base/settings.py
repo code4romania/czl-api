@@ -55,6 +55,8 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'czl.core.permissions.ReadOnly',
     ),
+
+    'PAGE_SIZE': 100,
 }
 
 ROOT_URLCONF = 'czl.base.urls'

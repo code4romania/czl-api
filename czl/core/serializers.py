@@ -14,12 +14,12 @@ class DocumentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Document
-        exclude = ('submitted_by', )
+        exclude = ('_created_by', '_created_at')
 
 
 class NestedDocumentSerializer(DocumentSerializer):
     class Meta(DocumentSerializer.Meta):
-        exclude = ('publication', 'id', 'submitted_by')
+        exclude = ('publication', 'id') + DocumentSerializer.Meta.exclude
 
 
 class PublicationSerializer(serializers.ModelSerializer):
@@ -29,7 +29,6 @@ class PublicationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Publication
         extra_kwargs = {'id': {'read_only': True}}
-        exclude = ('submitted_by', )
 
     def create(self, validated_data):
         docs_data = validated_data.pop('documents', [])

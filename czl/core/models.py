@@ -24,7 +24,16 @@ class Institution(models.Model):
         return self.name
 
 
-class Publication(models.Model):
+class _WritableModel(models.Model):
+    _created_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True)
+    _created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-_created_at']
+        abstract = True
+
+
+class Publication(_WritableModel):
     ID_FORMAT = "{institution}:{date}:{identifier}"
 
     __identifier_length = 128
@@ -46,7 +55,6 @@ class Publication(models.Model):
     contact = pgfields.HStoreField(default=dict) # (validators=[
     #    AllowedKeysValidator('tel', 'email', 'addr'),
     # ])
-    submitted_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True)
 
     def __str__(self):
         return "%s - %s" % (self.date, self.title)
@@ -59,8 +67,7 @@ class Publication(models.Model):
         super().save(*args, **kwargs)
 
 
-class Document(models.Model):
+class Document(_WritableModel):
     publication = models.ForeignKey(Publication, related_name="documents")
     type = models.CharField(max_length=128, blank=True)
     url = models.URLField()
-    submitted_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True)

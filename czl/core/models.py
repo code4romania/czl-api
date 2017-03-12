@@ -1,25 +1,18 @@
 from django.conf import settings
 from django.db import models
 from django.contrib.postgres import fields as pgfields
-from enumfields import EnumField, Enum
+from model_utils import Choices
 #from .validators import AllowedKeysValidator
 
 
-class PUBLICATION_TYPES(Enum):
-    LEGE = "lege"
-    HG = "hg"
-    OG = "og"
-    OUG = "oug"
-    OM = "om"
-    OTHER = "other"
-
-    class Labels:
-        LEGE = "Lege"
-        HG = "Hotărâre de guvern"
-        OG = "Ordonanță de guvern"
-        OUG = "Ordonanță de urgență"
-        OM = "Ordin de ministru"
-        OTHER = "Altceva..."
+PUBLICATION_TYPES = Choices(
+    ('LEGE', "Lege"),
+    ('HG', "Hotărâre de guvern"),
+    ('OG', "Ordonanță de guvern"),
+    ('OUG', "Ordonanță de urgență"),
+    ('OM', "Ordin de ministru"),
+    ('OTHER', "Altceva..."),
+)
 
 
 class Institution(models.Model):
@@ -44,8 +37,8 @@ class Publication(models.Model):
     id = models.CharField(max_length=__id_length, primary_key=True)
     identifier = models.CharField(max_length=__identifier_length)
     title = models.CharField(max_length=2048)
-    # TODO: switch this to an enum on the db side as well
-    type = EnumField(PUBLICATION_TYPES, max_length=7)
+    # TODO: switch this to an enum on the db side
+    type = models.CharField(PUBLICATION_TYPES, max_length=5)
     institution = models.ForeignKey(Institution)
     date = models.DateField(db_index=True)
     description = models.TextField(blank=True)

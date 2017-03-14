@@ -9,12 +9,16 @@ class InstitutionSerializer(serializers.ModelSerializer):
         model = Institution
 
 
-class DocumentSerializer(serializers.ModelSerializer):
+class _WritableModelSerializer(serializers.ModelSerializer):
+    class Meta:
+        exclude = ('_created_by', '_created_at')
+
+
+class DocumentSerializer(_WritableModelSerializer):
     url = CleansedURLField()
 
-    class Meta:
+    class Meta(_WritableModelSerializer.Meta):
         model = Document
-        exclude = ('_created_by', '_created_at')
 
 
 class NestedDocumentSerializer(DocumentSerializer):
@@ -22,11 +26,11 @@ class NestedDocumentSerializer(DocumentSerializer):
         exclude = ('publication', 'id') + DocumentSerializer.Meta.exclude
 
 
-class PublicationSerializer(serializers.ModelSerializer):
+class PublicationSerializer(_WritableModelSerializer):
     type = fields.ChoiceField(choices=PUBLICATION_TYPES._doubles)
     documents = NestedDocumentSerializer(many=True, required=False)
 
-    class Meta:
+    class Meta(_WritableModelSerializer.Meta):
         model = Publication
         extra_kwargs = {'id': {'read_only': True}}
 

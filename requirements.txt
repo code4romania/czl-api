@@ -5,6 +5,7 @@ PyYAML>=3.12,<4
 Werkzeug>=0.11.15,<0.12
 psycopg2>=2.6.2,<2.7
 djangorestframework>=3.4.0,<3.5
+django-filter>=1.0.1,<1.1
 django-model-utils>=2.6.1,<2.7
 # TODO: remove this, might be... dangerous.
 django-webshell

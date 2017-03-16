@@ -1,3 +1,5 @@
+# Installation
+
 ```shell
 createdb <dbname>
 echo create extension hstore | psql <dbname>
@@ -14,16 +16,27 @@ cd repo
 cp czl/base/localsettings.py.example czl/base/localsettings.py
 # edit localsettings.py as required
 ./manage.py migrate
-./manage.py collectstatic
 ```
 
-To run the project as a WSGI app:
+
+## To run the project as a WSGI app:
 
 - make sure PYTHONPATH includes `<deploydir>/repo` (or chdir to it),
 - use the virtualenv,
 - and use `[<deploydir>/repo/]czl/base/wsgi.py` as the WSGI application file.
 
-To run the development server:
+
+## Web server configuration:
+
+In production you should set `STATIC_ROOT` appropriately in settings,
+and serve the static files via the web server.
+
+```shell
+./manage.py collectstatic
+```
+
+
+## To run the development server:
 
 ```shell
 cd <deploydir>
@@ -31,3 +44,15 @@ cd <deploydir>
 cd repo
 ./manage.py runserver
 ```
+
+## Token generation:
+
+You can generate tokens using the admin interface. To do so, create a superuser:
+
+```shell
+./manage.py createsuperuser
+```
+
+then, using your browser visit the admin interface and (optionally) create
+a regular user under `/admin/auth/user/add/` and a token under
+`/admin/authtoken/token/add/`.

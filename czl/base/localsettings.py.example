@@ -17,4 +17,10 @@ DATABASES = {
     }
 }
 
-# STATIC_ROOT = '/webroot/static'
+# you may want to use these settings for development to skip authentication.
+# in production please observe the defaults in `settings.py`.
+REST_FRAMEWORK = {
+    'PAGE_SIZE': 20,
+}
+
+#STATIC_ROOT = '/webroot/static'

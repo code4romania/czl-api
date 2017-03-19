@@ -1,4 +1,4 @@
-from rest_framework import viewsets, mixins, permissions
+from rest_framework import viewsets, mixins
 from rest_framework import pagination
 from rest_framework import filters
 from django_filters.rest_framework import DjangoFilterBackend
@@ -18,7 +18,9 @@ class InstitutionViewSet(viewsets.ReadOnlyModelViewSet):
 # while the rest is read/create-only, and requires auth
 class _WritableViewSet(mixins.CreateModelMixin,
                        viewsets.ReadOnlyModelViewSet):
-    permission_classes = (permissions.IsAuthenticatedOrReadOnly, )
+    # don't force permissions, in order to ease development
+    #permission_classes = (permissions.IsAuthenticatedOrReadOnly, )
+    pass
 
 
 # TODO: this is the correct, predictable, non-repeating pagination,

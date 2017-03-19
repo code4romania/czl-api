@@ -52,7 +52,11 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
     ),
-
+    'DEFAULT_PERMISSION_CLASSES': (
+        # this is suitable for production
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    ),
+    # specify a default PAGE_SIZE, or views might not paginate predictably
     'PAGE_SIZE': 100,
 }
 

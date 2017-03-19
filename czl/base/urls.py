@@ -15,10 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-import czl.core.urls
+import czl.core.api.urls
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^admin/webshell/', include('webshell.urls')),
-    url(r'^api/', include(czl.core.urls)),
+    url(r'^api/', include(czl.core.api.urls)),
 ]

@@ -2,7 +2,7 @@ from rest_framework import viewsets, mixins, permissions
 from rest_framework import pagination
 from rest_framework import filters
 from django_filters.rest_framework import DjangoFilterBackend
-from .models import Institution, Publication, Document
+from ..models import Institution, Publication, Document
 from .serializers import (
     InstitutionSerializer, PublicationSerializer, DocumentSerializer,
 )

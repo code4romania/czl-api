@@ -1,6 +1,6 @@
 from django.db import IntegrityError
 from rest_framework import serializers, fields
-from .models import PUBLICATION_TYPES, Institution, Publication, Document
+from ..models import PUBLICATION_TYPES, Institution, Publication, Document
 from .fields import CleansedURLField
 
 

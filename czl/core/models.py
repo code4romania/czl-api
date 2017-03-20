@@ -14,6 +14,8 @@ PUBLICATION_TYPES = Choices(
     ('OTHER', "Altceva..."),
 )
 
+DEFAULT_FEEDBACK_DAYS = 10
+
 
 class Institution(models.Model):
     id = models.CharField(max_length=16, primary_key=True)

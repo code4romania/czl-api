@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block head %}
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<style>
+body {padding: 10px; }
+#stats {width: auto; }
+#stats th {text-align: center; }
+#stats th.name {text-align: left; }
+#stats td {text-align: right; }
+#stats td.name {text-align: left; }
+#stats path {
+  stroke: steelblue;
+  stroke-width: 1;
+  fill: none;
+}
+</style>
+{% endblock %}
+
+
+{% block content %}
+
+<table id="stats" class="table table-hover">
+  <thead class="thead-inverse">
+    <tr>
+      <th rowspan="2" class="name">Instituție</th>
+      <th colspan="3">Acte normative<th>
+    </tr>
+    <tr>
+      <th>în dezbatere</th>
+      <th>total indexate</th>
+      <th id="graph">ultimele {{ stats_period }} zile</th>
+    </tr>
+  </thead>
+  <tbody>
+{% for institution in institutions %}
+    <tr>
+      <td class="name">{{ institution }}</td>
+      <td>{{ institution.open_pub_count|default:"&nbsp;" }}</td>
+      <td>{{ institution.pub_count|default:"-" }}</td>
+      <td class="frequency" data-frequency="{{ institution.frequencies|join:"," }}"></td>
+    </tr>
+{% endfor %}
+  </tbody>
+</table>
+
+<script>
+(function() {
+
+var width = 100,
+    height = 20;
+
+var x = d3.scaleLinear()
+          .domain([0, {{ stats_period }}])
+          .range([0, 100]),
+    y = d3.scaleLinear()
+          .domain([0, {{ max_count }}])
+          .range([height, 0]);
+
+var line = d3.line()
+             .x(function(d, i) {
+               return x(i);
+             })
+             .y(function(d) {
+               return y(d);
+             });
+
+var graphs = d3.selectAll("#stats td.frequency")
+               .datum(function() {
+                 return this.dataset.frequency.split(",");
+               })
+               .append("svg")
+               .attr("width", width)
+               .attr("height", height)
+               .append("g")
+               .append("path")
+               .attr("d", function(d) {
+                 return line(d);
+               });
+})();
+</script>
+
+{{ block.super }}
+
+{% endblock %}

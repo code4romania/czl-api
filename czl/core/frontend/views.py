@@ -5,7 +5,7 @@ from django.db.models import fields
 from django.db.models.aggregates import Count
 from django.db.models import expressions as expr
 from ..models import (
-    DEFAULT_FEEDBACK_DAYS, Institution, Publication,
+    Institution, Publication,
 )
 
 QUERY_PERIOD = 30
@@ -22,18 +22,10 @@ def home(request):
     today = date.today()
     open_pubs = dict(
         Publication.objects
-        # TODO: these annotations should be in the default query
-        .annotate(fbdays=expr.Case(
-            expr.When(feedback_days=None,
-                      then=DEFAULT_FEEDBACK_DAYS),
-            default=expr.F('feedback_days')))
-        .annotate(fbmax=expr.ExpressionWrapper(
-            expr.F('date') + expr.F('fbdays'),
-            output_field=fields.DateField()))
         .filter(
             # in the future date might be null until resolved
             date__isnull=False,
-            fbmax__gte=today,
+            max_feedback_date__gte=today,
         )
         .order_by() # clears ordering
         .values_list('institution')
